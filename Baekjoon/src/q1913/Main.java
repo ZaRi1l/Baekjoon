@@ -13,6 +13,8 @@ public class Main {
 		int sec = sc.nextInt();
 		int num = sc.nextInt();
 		
+		sc.close();
+		
 		int x = sec/2;
 		int y = sec/2;
 		int op = 0;
