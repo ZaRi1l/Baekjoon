@@ -17,7 +17,7 @@ public class Main {
 		
 		int x = sec/2;
 		int y = sec/2;
-		int op = 0;
+		boolean op = true;
 		
 		int resX = 0, resY = 0;
 		
@@ -35,7 +35,7 @@ public class Main {
 			
 			
 			for (int j = 0; j <= i; j++) {
-				if (op == 0) {
+				if (op) {
 					x -= 1;
 					table[x][y] = numsPop();
 					
@@ -53,7 +53,7 @@ public class Main {
 			}
 			
 			for (int j = 0; j <= i; j++) {
-				if (op == 0) {
+				if (op) {
 					y += 1;
 					table[x][y] = numsPop();
 				} else {
@@ -62,10 +62,10 @@ public class Main {
 				}
 			}
 			
-			if (op == 0) {
-				op = -1; 
+			if (op) {
+				op = false; 
 			} else {
-				op = 0;
+				op = true;
 			}
 			
 		}
