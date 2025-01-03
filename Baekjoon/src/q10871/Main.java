@@ -12,6 +12,7 @@ public class Main {
 		for (int i = 0; i < seq.length; i++) {
 			seq[i] = sc.nextInt();
 		}
+		sc.close();
 		
 		for (int i = 0; i < seq.length; i++) {
 			if (seq[i] < n) System.out.printf("%d ", seq[i]);
