@@ -16,9 +16,9 @@ public class Main {
 		}
 		sc.close();
 		
-		for (int i = 0; i < arr.length ; i++) {
-			for (int j = i + 1; j < arr.length ; j++) {
-				int trueArrIndex = 0;	// 진짜 일곱난쟁이 넣는 순서
+		for (int i = 0; i < arr.length ; i++) {			// 제외할 난쟁이 하나 선택
+			for (int j = i + 1; j < arr.length ; j++) {	// 제외할 난쟁이 하나 선택2 
+				int trueArrIndex = 0;	// 진짜 일곱난쟁이의 인덱스
 				for (int k = 0; k < arr.length; k++) {
 					if (arr[k] != arr[i] && arr[k] != arr[j]) {	// 두명 i랑 j에 있는 친구들을 제외하고 trueArr에 넣음
 						trueArr[trueArrIndex] = arr[k];
