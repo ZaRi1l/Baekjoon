@@ -41,9 +41,11 @@ public class Main {
 			}
 		}
 
+		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < x.length; i++) { // 출력
-			System.out.print(x[i] + " ");
+			sb.append(x[i]).append(' ');
 		}
+		System.out.print(sb);
 
 	}
 
