@@ -46,5 +46,6 @@ public class Main {
 				break;
 			}
 		}
+		br.close();
 	}
 }
