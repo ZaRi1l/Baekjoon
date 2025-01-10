@@ -31,7 +31,10 @@ public class Main {
 					System.out.println(0);
 				break;
 			case "top":
-				System.out.println(stack.peek());
+				if (stack.empty())
+					System.out.println(-1);
+				else
+					System.out.println(stack.peek());
 				break;
 			}
 		}
