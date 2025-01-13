@@ -12,61 +12,39 @@ public class Main {
 		int n = Integer.parseInt(br.readLine());
 		br.close();
 
-		int[][] chess = new int[n][n]; // chess 판
+		int[] qPos = new int[n]; // 각 행별 퀸 위치
 
-//		for (int i = 0; i < chess.length; i++) {			// 출력 해보기
-//			for (int j = 0; j < chess[i].length; j++) {
-//				System.out.print(chess[i][j] + " ");
-//			}
-//			System.out.println();
-//		}
+		backTrack(qPos, 0);
 
-		for (int i = 0; i < chess.length; i++) { // 1행의 모든 수를 대입해보기
-			backTrack(chess, 0, i);
-			chess = new int[n][n];
-		}
-
-//		for (int i = 0; i < chess.length; i++) {		// 출력해보기
-//			for (int j = 0; j < chess[i].length; j++) {
-//				System.out.print(chess[i][j] + " ");
-//			}
-//			System.out.println();
-//		}
 		System.out.println(cs); // 경우의 수 출력
 
 	}
 
-	static void backTrack(int[][] chess, int x, int y) {
-		if (chess[x][y] == 1) // 차 있으면 끝탬
-			return;
-		if (chess[x][y] == 0 && x == chess.length - 1) { // 안 차있고, 마지막 행이면 경우의 수 cs에 1 더하기
-			cs += 1;
-			return;
-		}
+	static void backTrack(int[] qPos, int idx) {
 
-		for (int i = 0; i < chess.length; i++) { // 해당 좌표에서 퀸이 갈수 있는 범위에 1 채우기
-			chess[x][i] = 1;
-			chess[i][y] = 1;
-
-			if (x + i < chess.length && y + i < chess.length)
-				chess[x + i][y + i] = 1;
-
-			if (x + i < chess.length && y - i >= 0)
-				chess[x + i][y - i] = 1;
-		}
-
-		int[][] chessBackUp = new int[chess.length - x][]; // 백업용 복사본 만들기	 행 아랫부분만 저장할 것
-		for (int i = 0; i < chessBackUp.length; i++) {
-			chessBackUp[i] = chess[i + x].clone();
-		}
-
-		for (int j = 0; j < chess.length; j++) {
-			if (chess[x + 1][j] != 1) {
-				backTrack(chess, x + 1, j); // 다음행으로 넘어가서 확인하기
-				for (int i = 0; i < chessBackUp.length; i++) { // 다음행 가기 전으로 초기화 하기
-					chess[i + x] = chessBackUp[i].clone();
+		for (int i = 0; i < qPos.length; i++) { // emp가 비어있을때만 그 행의 위치 넣고, 재귀함수 호출
+			if (isEmpty(qPos, idx, i)) { // 현재 행에서 비어 있는지 확인
+				if (idx == qPos.length - 1) {
+					cs += 1;
+				} else {
+					qPos[idx] = i;
+					backTrack(qPos, idx + 1);
 				}
 			}
 		}
+
+	}
+
+	static boolean isEmpty(int[] qPos, int idx, int n) { // 원래는 배열로 했었는데, 배열을 새로 정의 할 경우 메모리 초과 걸림.
+
+		for (int i = 0; i < idx; i++) { // idx 행에서 열 n 위치에 넣었을때 공격범위에 있는지 확인
+			if (qPos[i] == n)
+				return false;
+
+			if (qPos[i] + (idx - i) == n || qPos[i] - (idx - i) == n) // 퀸의 대각선 에 false 넣기
+				return false;
+		}
+
+		return true;
 	}
 }
