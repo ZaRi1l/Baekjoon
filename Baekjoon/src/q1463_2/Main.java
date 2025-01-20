@@ -11,20 +11,33 @@ public class Main {
 		int n = Integer.parseInt(br.readLine());
 		br.close();
 
-		int num = 1;
-		int count = 0;
-		while (num != n) {
-			if (n >= num * 3) {
-				num *= 3;
-			} else if (n >= num * 2) {
-				num *= 2;
+		int num[] = new int[n];
+
+		if (n > 0)
+			num[0] = 0;
+		if (n > 1)
+			num[1] = 1;
+		if (n > 2)
+			num[2] = 1;
+
+		for (int i = 3; i < num.length; i++) {
+			int a, b, c;
+			if ((i + 1) % 3 == 0) {
+				a = (i + 1) / 3 - 1;
 			} else {
-				num += 1;
+				a = i - 1;
 			}
-			count += 1;
+			if ((i + 1) % 2 == 0) {
+				b = (i + 1) / 2 - 1;
+			} else {
+				b = i - 1;
+			}
+			c = i - 1;
+
+			num[i] = Math.min(num[a], Math.min(num[b], num[c])) + 1;
 		}
 
-		System.out.print(count);
+		System.out.println(num[num.length - 1]);
 	}
 
 }
