@@ -22,8 +22,6 @@ public class Main {
 		for(int i = 0; i < x.length; i ++) {
 			x[i] = Integer.parseInt(input[i]);
 		}
-//		x = Arrays.stream(input).mapToInt(Integer::parseInt).toArray();
-
 		
 		sortX = Arrays.stream(x).distinct().toArray();		// 중복 제거
 		Arrays.sort(sortX);		// 오름차순 정렬
@@ -41,10 +39,6 @@ public class Main {
  
         System.out.println(sb);
         
-//		for (int i = 0; i < x.length; i++) { // 출력
-//			System.out.printf("%d ", resX.get(x[i]));
-//		}
-		
 	}
 
 }
