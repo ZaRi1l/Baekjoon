@@ -35,7 +35,10 @@ public class Main {
 		for (int i = 0; i < met.length; i++) {
 			for (int j = 0; j < met[0].length; j++) {
 				if (met[i][j] == 1) {
-					met[i][j] += lineMax[j];
+					if (j != 0)
+						met[i][j] += lineMax[j - 1];
+					else
+						met[i][j] = 1;
 					lineMax[j] = met[i][j];
 				}
 
@@ -43,9 +46,12 @@ public class Main {
 					lineMax[j] = lineMax[j - 1];
 				}
 
-				if (i != 0)
-					lineMax[j] = met[i - 1][j] > lineMax[j] ? met[i - 1][j] : lineMax[j];
+				if (i != 0 && j != 0)
+					lineMax[j] = met[i - 1][j - 1] > lineMax[j] ? met[i - 1][j - 1] : lineMax[j];
+
+				System.out.print(lineMax[j] + " ");
 			}
+			System.out.println();
 		}
 
 		// 출력 해보기
@@ -58,34 +64,39 @@ public class Main {
 
 		// 뒤집었을때 버전도 만들어야할 듯
 
-		int[][] met2 = new int[str2.length()][str1.length()];
+//		int[][] met2 = new int[str2.length()][str1.length()];
+//
+//		for (int i = 0; i < met2.length; i++) {
+//			for (int j = 0; j < met2[0].length; j++) {
+//				if (str1.charAt(j) == str2.charAt(i))
+//					met2[i][j] = 1;
+//			}
+//		}
+//
+//		int[] lineMax2 = new int[str1.length()];
+//		for (int i = 0; i < met2.length; i++) {
+//			for (int j = 0; j < met2[0].length; j++) {
+//				if (met2[i][j] == 1) {
+//					if (j != 0)
+//						met2[i][j] += lineMax2[j - 1];
+//					else
+//						met2[i][j] = 1;
+//					lineMax2[j] = met2[i][j];
+//				}
+//
+//				if (j != 0 && lineMax2[j] < lineMax2[j - 1]) {
+//					lineMax2[j] = lineMax2[j - 1];
+//				}
+//
+//				if (i != 0)
+//					lineMax2[j] = met2[i - 1][j] > lineMax2[j] ? met2[i - 1][j] : lineMax2[j];
+//			}
+//		}
+//
+//		System.out.print(lineMax[lineMax.length - 1] < lineMax2[lineMax2.length - 1] ? lineMax2[lineMax2.length - 1]
+//				: lineMax[lineMax.length - 1]);
 
-		for (int i = 0; i < met2.length; i++) {
-			for (int j = 0; j < met2[0].length; j++) {
-				if (str1.charAt(j) == str2.charAt(i))
-					met2[i][j] = 1;
-			}
-		}
-
-		int[] lineMax2 = new int[str1.length()];
-		for (int i = 0; i < met2.length; i++) {
-			for (int j = 0; j < met2[0].length; j++) {
-				if (met2[i][j] == 1) {
-					met2[i][j] += lineMax2[j];
-					lineMax2[j] = met2[i][j];
-				}
-
-				if (j != 0 && lineMax2[j] < lineMax2[j - 1]) {
-					lineMax2[j] = lineMax2[j - 1];
-				}
-
-				if (i != 0)
-					lineMax2[j] = met2[i - 1][j] > lineMax2[j] ? met2[i - 1][j] : lineMax2[j];
-			}
-		}
-
-		System.out.print(lineMax[lineMax.length - 1] < lineMax2[lineMax2.length - 1] ? lineMax2[lineMax2.length - 1]
-				: lineMax[lineMax.length - 1]);
+		System.out.print(lineMax[lineMax.length - 1]);
 	}
 
 }
