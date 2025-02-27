@@ -20,53 +20,34 @@ public class Main {
 		}
 
 		int cost = 0;
-//		for (int i = 0; i < a.length; i++) {
-//			while (a[i] > 0) {
-//				a[i] -= 1;
-//				cost += 3;
-//
-//				if (i + 1 < a.length && a[i + 1] > 0) {
-//					a[i + 1] -= 1;
-//					cost += 2;
-//
-//					if (i + 2 < a.length && a[i + 2] > 0) {
-//						a[i + 2] -= 1;
-//						cost += 2;
-//					}
-//				}
-//			}
-//		}
 
 		for (int i = 0; i + 2 < a.length; i++) {
-			if (a[i] > 0 && a[i + 1] > 0 && a[i + 2] > 0) {
+			while (a[i] > 0 && a[i + 1] > 0 && a[i + 2] > 0) {
 				if (a[i + 1] > a[i + 2] && a[i + 1] > a[i]) {
-					int min = Math.min(a[i + 1], a[i]);
-					a[i] -= min;
-					a[i + 1] -= min;
-					cost += 5 * min;
+					a[i] -= 1;
+					a[i + 1] -= 1;
+					cost += 5;
+				} else {
+					a[i] -= 1;
+					a[i + 1] -= 1;
+					a[i + 2] -= 1;
+					cost += 7;
 				}
-				int min = Math.min(a[i], Math.min(a[i + 1], a[i + 2]));
-				a[i] -= min;
-				a[i + 1] -= min;
-				a[i + 2] -= min;
-				cost += 7 * min;
 			}
 		}
 
 		for (int i = 0; i + 1 < a.length; i++) {
-			if (a[i] > 0 && a[i + 1] > 0) {
-				int min = Math.min(a[i + 1], a[i]);
-				a[i] -= min;
-				a[i + 1] -= min;
-				cost += 5 * min;
+			while (a[i] > 0 && a[i + 1] > 0) {
+				a[i] -= 1;
+				a[i + 1] -= 1;
+				cost += 5;
 			}
 		}
 
 		for (int i = 0; i < a.length; i++) {
-			if (a[i] > 0) {
-				int min = a[i];
-				a[i] -= min;
-				cost += 3 * min;
+			while (a[i] > 0) {
+				a[i] -= 1;
+				cost += 3 * 1;
 			}
 		}
 
