@@ -42,9 +42,19 @@ public class Main {
 						int tmp2 = x[j][i - 1] * 2 + c[i];
 
 						int min = tmp1 < tmp2 ? tmp1 : tmp2;
-						for (int l = 1; l < i - 1; l++) {	// ??
-							int a = x[j][l];
-							int b = x[j + l + 1][i];
+						for (int l = 1; l < i - 1 || l < j - 1; l++) {	// ??
+							int a = min;
+							int b = min;
+							if (j + l + 1 < x.length && l < x.length) {
+								a = x[j][l];
+								b = x[j + l + 1][i];
+							} else if (j + l + 1 < x.length){
+								b = x[j + l + 1][i];
+								a = b;
+							} else if (i + l + 1 < x.length) {
+								a = x[j][l];
+								b = a;
+							}
 							int tmp3 = a * 2 + b * 2;
 
 							min = min < tmp3 ? min : tmp3;
