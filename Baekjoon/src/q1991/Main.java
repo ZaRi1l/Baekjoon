@@ -13,6 +13,7 @@ public class Main {
 		int n = Integer.parseInt(br.readLine());
 
 		nodes = new node[n];
+		int idx = 1;
 
 		for (int i = 0; i < nodes.length; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
@@ -20,29 +21,32 @@ public class Main {
 			char l = st.nextToken().charAt(0);
 			char r = st.nextToken().charAt(0);
 
-			for (int k = 0; k < nodes.length; k++) {
-				if (nodes[k] == null)
-					break;
-				if (nodes[k].getRoot() == root) {
-					nodes[i] = nodes[k];
-					break;
-				}
-			}
-
 			if (nodes[i] == null)
 				nodes[i] = new node(root);
 
 			if (l != '.') {
 				nodes[i].setL(new node(l));
-				nodes[i + 1] = nodes[i].getL();
+				nodes[idx++] = nodes[i].getL();
 			}
 			if (r != '.') {
 				nodes[i].setR(new node(r));
-				nodes[i + 2] = nodes[i].getR();
+				nodes[idx++] = nodes[i].getR();
 			}
 		}
 		
+		for(int i = 0; i< nodes.length;i ++) {
+			System.out.println(nodes[i].getRoot());
+		}
+		System.out.println(nodes[5].getRoot());
+		System.out.println(nodes[5].getR().getRoot());
+		
+		
+
 		preorder(nodes[0]);
+		System.out.println();
+		inorder(nodes[0]);
+		System.out.println();
+		postorder(nodes[0]);
 
 	}
 
@@ -54,6 +58,26 @@ public class Main {
 
 		if (root.getR() != null)
 			preorder(root.getR());
+	}
+
+	private static void inorder(node root) {
+		if (root.getL() != null)
+			inorder(root.getL());
+
+		System.out.print(root.getRoot());
+
+		if (root.getR() != null)
+			inorder(root.getR());
+	}
+
+	private static void postorder(node root) {
+		if (root.getL() != null)
+			postorder(root.getL());
+
+		if (root.getR() != null)
+			postorder(root.getR());
+
+		System.out.print(root.getRoot());
 	}
 
 }
