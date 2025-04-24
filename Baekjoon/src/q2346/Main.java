@@ -30,9 +30,9 @@ public class Main {
 
 			for (int i = 0; i < Math.abs(num);) { // 들어가 있는 숫자의 절대값만큼 반복문 반복
 				idx = num > 0 ? idx + 1 : idx - 1; // 0보다 크면 1씩 더하고, 0보다 작으면 1씩 빼기
-				if (idx < 0) // 그 idx가 n(풍선의 개수)보다 작으면 n더해주기
+				if (idx < 0) // idx가 0보다 작아졌을 때 n더해주기
 					idx = n + idx;
-				idx %= n; // idx 보다 크면 나머지 넣어주기
+				idx %= n; // idx가 n보다 크면 나머지 넣어주기
 
 				if (balloon[idx] != null) { // 해당 풍선이 null 이 아닌 경우에만
 					i++; // 반복문 i 값 올려주기
